@@ -1,0 +1,71 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Secrets and machine-local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+config/local/
+config/*.local.*
+config/source_paths.local.json
+
+# Raw, derived, and participant-generated data
+.local/
+data/
+outputs/
+results/
+logs/
+tmp/
+portable_dist/
+recordings/
+**/study_state.json
+**/recordings/
+
+# Large data, media, databases, models, and archives
+*.h5
+*.hdf5
+*.db
+*.sqlite
+*.sqlite3
+*.mp4
+*.avi
+*.mov
+*.webm
+*.wav
+*.ogg
+*.m4a
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.zip
+*.tar
+*.tar.gz
+
+# Build artifacts
+build/
+dist/
+site/
+node_modules/

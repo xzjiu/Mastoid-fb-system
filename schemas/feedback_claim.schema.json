@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "feedback_claim.schema.json",
+  "title": "Validated Feedback Claim",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "claim_id",
+    "claim_type",
+    "text",
+    "evidence_ids",
+    "certainty",
+    "validation_status"
+  ],
+  "properties": {
+    "claim_id": {"type": "string", "minLength": 1},
+    "claim_type": {
+      "enum": [
+        "observed_issue",
+        "evidence_summary",
+        "association",
+        "interpretation",
+        "recommended_action",
+        "priority",
+        "abstention"
+      ]
+    },
+    "text": {"type": "string", "minLength": 1},
+    "evidence_ids": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "knowledge_rule_id": {"type": ["string", "null"]},
+    "certainty": {"enum": ["verified_fact", "candidate", "hypothesis", "uncertain"]},
+    "feedback_level": {"enum": ["L0", "L1", "L2", "L3", "L4"]},
+    "validation_status": {"enum": ["pending", "accepted", "downgraded", "rejected"]},
+    "validation_messages": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "structured_facts": {
+      "type": "array",
+      "items": {"type": "object"}
+    }
+  }
+}

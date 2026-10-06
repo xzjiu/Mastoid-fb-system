@@ -1,0 +1,24 @@
+{
+  "schema_version": "study_manifest_v1",
+  "interface_version": "demo-v1",
+  "app_mode": "recommendations",
+  "path_base": "repository_root",
+  "host": "127.0.0.1",
+  "base_port": 8785,
+  "ui_directory": "apps/recommendations",
+  "data_access": {
+    "expert_annotations": "none",
+    "participant_responses": "none"
+  },
+  "cases": [
+    {
+      "case_id": "DEMO_CASE_01",
+      "run_id": "DEMO_CASE_01",
+      "display_name": "Synthetic demo case",
+      "port": 8785,
+      "evidence_database": "results/DEMO_CASE_01/evidence.sqlite3",
+      "review_video": "results/DEMO_CASE_01/review_video.webm",
+      "review_video_manifest": "results/DEMO_CASE_01/review_video_manifest.json"
+    }
+  ]
+}

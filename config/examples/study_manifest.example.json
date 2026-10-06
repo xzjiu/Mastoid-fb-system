@@ -1,0 +1,25 @@
+{
+  "schema_version": "study_manifest_v1",
+  "interface_version": "demo-v1",
+  "app_mode": "expert-study",
+  "path_base": "repository_root",
+  "host": "127.0.0.1",
+  "base_port": 8790,
+  "ui_directory": "apps/expert_study",
+  "data_access": {
+    "expert_annotations": "read_write",
+    "participant_responses": "read_write"
+  },
+  "cases": [
+    {
+      "case_id": "DEMO_CASE_01",
+      "run_id": "DEMO_CASE_01",
+      "display_name": "Synthetic demo case",
+      "port": 8790,
+      "evidence_database": "results/DEMO_CASE_01/evidence.sqlite3",
+      "review_video": "results/DEMO_CASE_01/review_video.webm",
+      "review_video_manifest": "results/DEMO_CASE_01/review_video_manifest.json",
+      "study_state": "results/DEMO_CASE_01/study_state.json"
+    }
+  ]
+}

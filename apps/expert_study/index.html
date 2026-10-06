@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Expert Workflow Experience</title>
+  <meta name="description" content="End-to-end surgeon experience of automated simulator feedback" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">M</span>
+      <div><p>Recorded-session pilot</p><h1>Expert Workflow Experience</h1></div>
+    </div>
+    <span id="interfaceVersion" class="version-badge">Pilot UI v1.4.1</span>
+    <div id="headerStatus" class="header-status hidden" aria-live="polite">
+      <span id="caseLabel">Case —</span>
+      <span class="divider" aria-hidden="true"></span>
+      <span id="workflowStatus">Session ready</span>
+    </div>
+  </header>
+
+  <main>
+    <section id="accessPanel" class="panel access-panel">
+      <p class="eyebrow">Study access</p>
+      <h2>Enter your assigned Study ID</h2>
+      <p class="lead">Use the pseudonymous code provided by the study team. Do not enter your name, email address, or other identifying information.</p>
+      <form id="accessForm">
+        <label for="participantId">Study ID</label>
+        <input id="participantId" name="participant_id" type="text" maxlength="64" pattern="[A-Za-z0-9][A-Za-z0-9_.-]{0,63}" autocomplete="off" required placeholder="e.g. S001" />
+        <label class="check-row">
+          <input id="studyReady" type="checkbox" required />
+          <span>I confirm that the study team has completed the applicable consent process and assigned this code.</span>
+        </label>
+        <button class="primary-button" type="submit">Enter study</button>
+        <p id="accessError" class="form-error hidden" role="alert"></p>
+      </form>
+    </section>
+
+    <section id="readyPanel" class="panel ready-panel hidden">
+      <div class="ready-icon" aria-hidden="true">✓</div>
+      <p class="eyebrow">Simulator session complete</p>
+      <h2 id="readyCaseTitle">A recorded session is ready for analysis</h2>
+      <p id="workflowDisclosure" class="lead"></p>
+      <div class="workflow-preview">
+        <div><span>1</span><strong>Session data</strong><small>Recorded simulator evidence</small></div>
+        <i aria-hidden="true">→</i>
+        <div><span>2</span><strong>Automated analysis</strong><small>Evidence retrieval and prioritization</small></div>
+        <i aria-hidden="true">→</i>
+        <div><span>3</span><strong>Post-session review</strong><small>Feedback with linked video</small></div>
+      </div>
+      <p class="study-note"><strong>Pilot boundary:</strong> this experience begins after a simulator session has ended. The session was recorded previously; the site is not receiving a live simulator stream.</p>
+      <button id="startAnalysisButton" class="primary-button large-button">Start automatic session analysis</button>
+    </section>
+
+    <section id="processingPanel" class="panel processing-panel hidden" aria-live="polite">
+      <div class="spinner" aria-hidden="true"></div>
+      <p class="eyebrow">Automatic processing</p>
+      <h2>Preparing post-session feedback</h2>
+      <p class="lead">The system is assembling the evidence already generated from this recorded session.</p>
+      <div id="processingStages" class="processing-stages"></div>
+    </section>
+
+    <section id="experiencePanel" class="hidden">
+      <section class="procedure-card panel" aria-labelledby="procedureHeading">
+        <div class="section-title">
+          <div><p class="eyebrow">Procedure map</p><h2 id="procedureHeading">Where the coaching moments occurred</h2></div>
+          <span id="durationLabel">—</span>
+        </div>
+        <div id="phaseMap" class="phase-map"></div>
+        <div class="ruler"><span>0:00</span><span>25%</span><span>50%</span><span>75%</span><span id="timelineEnd">—</span></div>
+        <div id="coachingMap" class="coaching-map"></div>
+        <p class="map-help"><i></i> Circles are automated coaching moments; purple diamonds are moments added by the expert.</p>
+      </section>
+
+      <section class="focus-heading">
+        <div><p class="eyebrow">Automated post-session feedback</p><h2>What to focus on next</h2></div>
+        <p>Explore the feedback as you would during a trainee debrief. There are no item-by-item study questions in this view.</p>
+      </section>
+
+      <section class="feedback-layout">
+        <nav class="focus-list panel" aria-label="Session coaching priorities"><div id="focusList"></div></nav>
+        <article class="feedback-detail panel" id="feedbackDetail">
+          <div class="empty-state"><h2>Loading session feedback…</h2></div>
+        </article>
+      </section>
+
+      <section class="video-card panel" id="videoCard">
+        <div class="section-title video-title">
+          <div><p class="eyebrow">Linked session video</p><h2 id="videoHeading">Review the supporting moment</h2></div>
+          <span id="videoWindow">Full session</span>
+        </div>
+        <video id="sessionVideo" controls preload="metadata" playsinline>Your browser does not support the local review video.</video>
+        <div id="videoUnavailable" class="video-unavailable hidden">A review video is not available for this session.</div>
+        <div id="clipList" class="clip-list"></div>
+
+        <section class="expert-moment-capture" aria-labelledby="expertMomentHeading">
+          <div class="expert-moment-intro">
+            <div>
+              <p class="eyebrow">Expert contribution · optional</p>
+              <h3 id="expertMomentHeading">Notice another coaching moment?</h3>
+              <p>Pause at the relevant point, then add what you would tell the trainee. You may type, record audio, or do both.</p>
+            </div>
+            <button id="openMomentButton" class="secondary-button" type="button">Mark another coaching moment</button>
+          </div>
+
+          <div id="expertMomentWorkspace" class="expert-moment-workspace hidden">
+            <aside class="reference-moment-panel" aria-label="Reference video for the new coaching moment">
+              <div class="reference-moment-heading">
+                <div><p class="eyebrow">Reference moment</p><h4>Keep the video in view</h4></div>
+                <strong id="referenceMomentTime">0:00.0</strong>
+              </div>
+              <video id="referenceVideo" controls muted preload="metadata" playsinline>Your browser does not support the local review video.</video>
+              <div class="reference-actions">
+                <button id="replayReferenceButton" class="secondary-button" type="button">Replay surrounding 8 seconds</button>
+                <button id="returnToMarkedFrameButton" class="text-button" type="button">Return to marked frame</button>
+              </div>
+              <p class="reference-note">This silent reference remains visible while you type or record, so playback sound is not captured in the voice note.</p>
+            </aside>
+
+          <form id="expertMomentForm" class="expert-moment-form">
+            <div class="moment-time-row">
+              <span>Linked video time</span>
+              <strong id="momentTimeLabel">0:00.0</strong>
+            </div>
+            <div class="moment-grid">
+              <label>Category
+                <select id="momentCategory" name="category" required>
+                  <option value="">Select one</option>
+                  <option value="exposure">Exposure / working corridor</option>
+                  <option value="safety">Safety boundary</option>
+                  <option value="visualization">Visualization</option>
+                  <option value="efficiency">Efficiency / instrument use</option>
+                  <option value="other">Other</option>
+                </select>
+              </label>
+              <label>Importance
+                <select id="momentImportance" name="importance" required>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                  <option value="low">Low</option>
+                </select>
+              </label>
+            </div>
+            <label>What did you notice?
+              <textarea id="momentObservation" name="observation" maxlength="4000" placeholder="Optional if you prefer to explain by voice"></textarea>
+            </label>
+            <label>What would you tell the trainee?
+              <textarea id="momentCoaching" name="coaching_message" maxlength="4000" placeholder="Optional if you prefer to explain by voice"></textarea>
+            </label>
+            <fieldset class="coverage-fieldset">
+              <legend>Did the automated feedback address this moment?</legend>
+              <div class="choice-row compact-choice-row">
+                <label><input type="radio" name="system_coverage" value="missed" required /><span>No, it missed it</span></label>
+                <label><input type="radio" name="system_coverage" value="partial" /><span>Partly</span></label>
+                <label><input type="radio" name="system_coverage" value="addressed" /><span>Yes</span></label>
+                <label><input type="radio" name="system_coverage" value="unsure" /><span>Unsure</span></label>
+              </div>
+            </fieldset>
+            <div class="audio-capture">
+              <div>
+                <strong>Voice note</strong>
+                <p id="recordingStatus">Optional · stored only in this local study folder</p>
+              </div>
+              <div class="audio-actions">
+                <button id="startRecordingButton" class="secondary-button" type="button">Start recording</button>
+                <button id="stopRecordingButton" class="secondary-button hidden" type="button">Stop recording</button>
+                <button id="discardRecordingButton" class="text-button hidden" type="button">Discard audio</button>
+              </div>
+              <audio id="recordingPreview" class="hidden" controls></audio>
+            </div>
+            <p id="momentFormError" class="form-error hidden" role="alert"></p>
+            <div class="form-actions">
+              <button id="cancelMomentButton" class="secondary-button" type="button">Cancel</button>
+              <button class="primary-button" type="submit">Save coaching moment</button>
+            </div>
+          </form>
+          </div>
+          <div id="expertMomentList" class="expert-moment-list"></div>
+        </section>
+      </section>
+
+      <details id="supportDetails" class="more-detail panel">
+        <summary><span><small>Optional detail</small>How this summary is supported</span><b>+</b></summary>
+        <div class="support-grid">
+          <div><h3>Session evidence</h3><p>The locations and observations come from time-aligned simulator evidence.</p></div>
+          <div><h3>Experienced reference</h3><p>Compatible comparisons are qualitative and are not an absolute trainee score.</p></div>
+          <div><h3>Interpretation boundary</h3><p>The system reports supported observations and does not infer trainee intent or clinical injury.</p></div>
+        </div>
+      </details>
+
+      <section class="finish-card panel">
+        <div><p class="eyebrow">End of case</p><h2>Finish when you have explored the workflow</h2><p>Open the feedback items and linked video as you naturally would. A short overall reflection follows.</p></div>
+        <button id="finishExperienceButton" class="primary-button">Finish case experience</button>
+      </section>
+    </section>
+
+    <section id="reflectionPanel" class="panel reflection-panel hidden">
+      <p class="eyebrow">After the experience</p>
+      <h2>Overall workflow reflection</h2>
+      <p class="lead">These questions concern the complete post-session experience, not individual feedback items.</p>
+      <form id="reflectionForm">
+        <div id="reflectionScales"></div>
+        <div class="question-block">
+          <p class="question-title">Would you use this workflow in a simulator debrief?</p>
+          <div class="choice-row">
+            <label><input type="radio" name="would_use" value="yes" required /><span>Yes</span></label>
+            <label><input type="radio" name="would_use" value="with_changes" /><span>With changes</span></label>
+            <label><input type="radio" name="would_use" value="no" /><span>No</span></label>
+            <label><input type="radio" name="would_use" value="unsure" /><span>Unsure</span></label>
+          </div>
+        </div>
+        <div class="question-block">
+          <label for="mostUseful">What part of the workflow was most useful?</label>
+          <textarea id="mostUseful" name="most_useful" maxlength="4000"></textarea>
+        </div>
+        <div class="question-block">
+          <label for="missingOrConcerning">What was missing, confusing, or concerning?</label>
+          <textarea id="missingOrConcerning" name="missing_or_concerning" maxlength="4000"></textarea>
+        </div>
+        <div class="form-actions">
+          <button id="returnToExperienceButton" class="secondary-button" type="button">Return to feedback</button>
+          <button class="primary-button" type="submit">Submit and complete case</button>
+        </div>
+        <p id="reflectionError" class="form-error hidden" role="alert"></p>
+      </form>
+    </section>
+
+    <section id="completionPanel" class="panel completion-panel hidden" aria-live="polite">
+      <div class="completion-mark" aria-hidden="true">✓</div>
+      <p class="eyebrow">Case complete</p>
+      <h2 id="completionTitle">Thank you for completing this case.</h2>
+      <p id="completionMessage" class="lead"></p>
+      <button id="nextCaseButton" class="primary-button hidden">Continue to next case</button>
+      <div id="completionCodeBlock" class="completion-code hidden">
+        <span>Completion code</span><strong id="completionCode">—</strong>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>

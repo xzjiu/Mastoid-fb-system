@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "knowledge_rule.schema.json",
+  "title": "Expert Knowledge Rule",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "rule_id",
+    "rule_status",
+    "applies_to",
+    "allowed_claim_types",
+    "wording",
+    "provenance"
+  ],
+  "properties": {
+    "rule_id": {"type": "string", "minLength": 1},
+    "rule_status": {"enum": ["draft", "expert_validated", "retired"]},
+    "applies_to": {"type": "object"},
+    "allowed_claim_types": {
+      "type": "array",
+      "items": {"enum": ["interpretation", "recommended_action"]},
+      "uniqueItems": true
+    },
+    "wording": {"type": "string", "minLength": 1},
+    "contraindications": {"type": "array", "items": {"type": "string"}},
+    "provenance": {
+      "type": "object",
+      "required": ["reviewer", "review_date", "source"],
+      "properties": {
+        "reviewer": {"type": "string"},
+        "review_date": {"type": "string", "format": "date"},
+        "source": {"type": "string"}
+      }
+    }
+  }
+}

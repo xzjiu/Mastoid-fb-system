@@ -1,0 +1,29 @@
+schema_version: feedback_policy_v1
+
+evidence_statuses:
+  - candidate
+  - simulator_supported
+  - human_confirmed
+  - human_rejected
+
+rule_statuses:
+  - draft
+  - expert_validated
+  - retired
+
+feedback_levels:
+  L0: alert_only
+  L1: evidence_description
+  L2: plausible_mechanism_with_uncertainty
+  L3: actionable_coaching_requires_validated_rule
+  L4: anatomy_aware_coaching_requires_validated_rule
+
+hard_constraints:
+  - every_factual_claim_requires_evidence_id
+  - candidate_must_not_be_rendered_as_confirmed
+  - simulator_overshoot_must_not_be_called_clinical_injury
+  - temporal_association_must_not_be_rendered_as_causation
+  - mechanism_requires_expert_validated_rule
+  - coaching_requires_expert_validated_rule
+  - priority_requires_calibrated_or_expert_validated_rule
+  - replay_must_not_access_future_evidence

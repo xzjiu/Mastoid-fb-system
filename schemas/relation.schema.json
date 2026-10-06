@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "relation.schema.json",
+  "title": "Evidence Relation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "relation_id",
+    "source_id",
+    "relation_type",
+    "target_id",
+    "construction_method",
+    "rule_version"
+  ],
+  "properties": {
+    "relation_id": {"type": "string", "minLength": 1},
+    "source_id": {"type": "string", "minLength": 1},
+    "relation_type": {
+      "enum": [
+        "contains",
+        "occurs_during",
+        "derived_from",
+        "working_region_near",
+        "simulator_overshoot_involves",
+        "temporally_overlaps",
+        "temporally_overlaps_performance",
+        "has_motion_context",
+        "supported_by"
+      ]
+    },
+    "target_id": {"type": "string", "minLength": 1},
+    "construction_method": {
+      "enum": ["deterministic", "human_confirmed", "agent_proposed"]
+    },
+    "provisional": {"type": "boolean", "default": false},
+    "attributes": {"type": "object"},
+    "rule_version": {"type": "string", "minLength": 1}
+  }
+}

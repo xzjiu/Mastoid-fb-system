@@ -1,0 +1,30 @@
+schema_version: relation_rules_v1
+status: deterministic_factual_only
+
+allowed_relations:
+  - contains
+  - occurs_during
+  - derived_from
+  - working_region_near
+  - simulator_overshoot_involves
+  - temporally_overlaps
+  - temporally_overlaps_performance
+  - has_motion_context
+  - supported_by
+
+forbidden_without_expert_rule:
+  - caused_by
+  - indicates_insufficient_exposure
+  - caused_injury
+  - should_drill_deeper
+  - should_widen_corridor
+
+rules:
+  occurs_during: interval_membership
+  derived_from: explicit_source_membership
+  temporally_overlaps: interval_intersection
+  has_motion_context: event_to_overlapping_motion_summary
+
+timestamp_semantics:
+  precision: raw_full_precision
+  legacy_difference: legacy_events_were_rounded_to_six_decimals_before_overlap_testing

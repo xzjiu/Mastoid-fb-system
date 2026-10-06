@@ -1,0 +1,2 @@
+dataset_id,run_id,participant_id,trial_id,training_year,exp_id,anatomy_key,raw_anatomy_token,anatomy_mapping_status,anatomy_mapping_basis,raw_run_relpath,edt_profile,phase_annotation_id,source_status,external_case_id,golden_reference_path
+DEMO,DEMO_CASE_01,DEMO_PARTICIPANT,DEMO_TRIAL,0,9001,DEMO_ANATOMY_01,DEMO_ANATOMY,synthetic,generated_fixture,DEMO_CASE_01,demo_edt_16,exp_id:9001,synthetic_fixture,DEMO_CASE_01,

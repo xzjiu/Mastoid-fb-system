@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Simulator Session Review</title>
+  <meta name="description" content="Time-linked coaching after a mastoidectomy simulator session" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">M</span>
+      <div><p>Post-session coaching</p><h1>Your Simulator Session Review</h1></div>
+    </div>
+    <div class="run-control">
+      <label for="runSelect">Session</label>
+      <select id="runSelect"><option>Loading…</option></select>
+      <span class="local-status">Evidence linked</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="procedure-card" aria-labelledby="procedureHeading">
+      <div class="section-title">
+        <div><p class="eyebrow">Procedure map</p><h2 id="procedureHeading">Where the coaching moments occurred</h2></div>
+        <span id="durationLabel">—</span>
+      </div>
+      <div id="phaseMap" class="phase-map"></div>
+      <div class="ruler"><span>0:00</span><span>25%</span><span>50%</span><span>75%</span><span id="timelineEnd">—</span></div>
+      <div id="coachingMap" class="coaching-map"></div>
+      <p class="map-help"><i></i> Select a coaching moment to review its explanation and video.</p>
+    </section>
+
+    <section class="focus-heading">
+      <div><p class="eyebrow">Personalized session review</p><h2>What to focus on next</h2></div>
+      <p>Start with the highest-priority item, then review the linked moments in your video.</p>
+    </section>
+
+    <section class="feedback-layout">
+      <nav class="focus-list" aria-label="Session coaching priorities">
+        <div id="focusList"></div>
+      </nav>
+
+      <article class="feedback-detail" id="feedbackDetail">
+        <div class="empty-state"><h2>Loading session feedback…</h2></div>
+      </article>
+    </section>
+
+    <section class="video-card" id="videoCard">
+      <div class="section-title video-title">
+        <div><p class="eyebrow">Linked session video</p><h2 id="videoHeading">Review the supporting moment</h2></div>
+        <span id="videoWindow">Full session</span>
+      </div>
+      <video id="sessionVideo" controls preload="metadata" playsinline>Your browser does not support the local review video.</video>
+      <div id="videoUnavailable" class="video-unavailable hidden">A review video is not available for this session.</div>
+      <div id="clipList" class="clip-list"></div>
+    </section>
+
+    <details class="more-detail">
+      <summary><span><small>Optional detail</small>How this summary is supported</span><b>+</b></summary>
+      <div class="support-grid">
+        <div><h3>Session evidence</h3><p>The locations and observations come from time-aligned simulator evidence. Select any feedback item to return to the relevant video interval.</p></div>
+        <div><h3>Experienced reference</h3><p>When compatible reference data are available, comparisons are described qualitatively rather than as an absolute trainee score.</p></div>
+        <div><h3>Interpretation boundary</h3><p>The system reports supported observations and cautious mechanisms. It does not infer your intent or claim a clinical injury.</p></div>
+      </div>
+    </details>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>

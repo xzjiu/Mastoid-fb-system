@@ -1,0 +1,48 @@
+schema_version: event_rules_v1_canonical_phase
+status: provisional_reference_defaults
+warning: >-
+  These values document deterministic reference behavior for reproducibility.
+  They are not clinically validated thresholds and must be reviewed before use
+  with human-subject or clinical data.
+
+event_types:
+  simulator_overshoot:
+    evidence_status: simulator_supported
+    legacy_group_gap_s: 10.0
+    review_status: provisional_rule
+    trainee_coaching_gate:
+      logic: volume_and_minimum_penetration_or_deep_single_voxel
+      min_inside_voxels_per_structure_per_frame: 10
+      volume_branch_max_edt_mm: -0.1
+      deep_edt_threshold_mm: -1.0
+      coaching_segment_gap_s: 1.0
+      status: provisional_threshold_pending_expert_validation
+  boundary_work:
+    evidence_status: simulator_supported
+    max_removed_voxel_edt_mm: 5.0
+    legacy_group_gap_s: 10.0
+    review_status: proximity_descriptor_not_error_label
+  tip_occlusion:
+    evidence_status: candidate
+    legacy_group_gap_s: 1.0
+    review_status: candidate_unvalidated
+  under_ledge_candidate:
+    evidence_status: candidate
+    accepted_source_states: [mild, clear]
+    legacy_group_gap_s: 1.0
+    review_status: candidate_unvalidated
+  performance_bout:
+    evidence_status: simulator_supported
+    legacy_group_gap_s: 2.0
+    review_status: provisional_rule
+
+phase_display_map:
+  early_surface: early_surface
+  antrum_entry: antrum
+  deep_landmark: incus
+
+phase_semantics:
+  source: human_video_timepoint_annotation
+  start: first_drilling_frame
+  end: exact_human_annotation_endpoint_with_observed_recording_coverage_stored_separately
+  legacy_difference: legacy_graph_clipped_phase_nodes_to_last_drilling_frame

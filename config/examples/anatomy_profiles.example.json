@@ -1,0 +1,16 @@
+{
+  "schema": "anatomy_profiles_v1",
+  "profiles": {
+    "DEMO_ANATOMY_01": {
+      "edt_profile": "demo_edt_16",
+      "spatial_resolution_mm": 0.2,
+      "edt_distance_scale_mm": 0.4,
+      "simulator_unit": 0.02,
+      "meters_per_simulator_unit": 0.05,
+      "volume_dimensions_sim": [1.0, 1.0, 1.0],
+      "adf_profile": "demo_volume.yaml",
+      "voxel_coordinate_mapping": "x_edt=x_sim; y_edt=(resolution_y-1)-y_sim; z_edt=z_sim",
+      "provenance": "deterministically generated synthetic fixture"
+    }
+  }
+}

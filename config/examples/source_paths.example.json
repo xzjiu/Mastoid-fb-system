@@ -1,0 +1,6 @@
+{
+  "schema_version": "source_paths_v1",
+  "data_root": "data/demo/raw",
+  "edt_root": "data/demo/edt",
+  "phase_annotation_file": "data/demo/annotations/phase_timepoints.csv"
+}
