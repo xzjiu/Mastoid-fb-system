@@ -1,0 +1,92 @@
+[
+  {
+    "path": "README.md",
+    "action": "replace",
+    "sha256": "1ed1feba8f737944557eb67b322173906059419d2838d3fa28a74297ac973196",
+    "original_sha256": "5d7c93ac3e306600ad4a042be453516367dae13caaca42f0a33b29fc53acd93e"
+  },
+  {
+    "path": "docs/PHASE_DETECTION.md",
+    "action": "add",
+    "sha256": "bd59b3c698e7c50a217c7975887a4ab9830cfcdbb28b395710c0ed1470a847d0",
+    "original_sha256": null
+  },
+  {
+    "path": "scripts/infer_phase_hdf5.py",
+    "action": "add",
+    "sha256": "2ae5db5e30c57912444f383c547dd7ecadf883aec4ccbc7f38382e86f6cc0ce3",
+    "original_sha256": null
+  },
+  {
+    "path": "scripts/prepare_phase_input.py",
+    "action": "add",
+    "sha256": "2c4938e9a20fd30ca92e6872c555bdb4c8e27b3108e28b4f0f916604fc2f84f2",
+    "original_sha256": null
+  },
+  {
+    "path": "src/evidence_system/cli.py",
+    "action": "replace",
+    "sha256": "e882716ba49576ca833b7d474aaef38d2017b3c702f60a09a61e74c443c495a1",
+    "original_sha256": "e8f54aae54bdfc9a1ee7f4a2d40bd41089648e88aefec5cedf09c4d9e456657c"
+  },
+  {
+    "path": "src/evidence_system/events/builder.py",
+    "action": "replace",
+    "sha256": "548fe2052b34fd2625afdb6b163b0907c97bc7e18d4e04bc7c7fde2e90613982",
+    "original_sha256": "3b0536b3beb145d82216f371c8bfee7b3049677a820de8d963a8e75f99583a38"
+  },
+  {
+    "path": "src/evidence_system/frame_pipeline/core_frames.py",
+    "action": "replace",
+    "sha256": "0a2bf11316e54dbea8da8a71f548b01a78c0f23f3dfeb2cd03eb4c421e40795f",
+    "original_sha256": "6b022b29370e6a75432835e43777014e049a25e8a5955bf3979ca5d66c4a84a5"
+  },
+  {
+    "path": "src/evidence_system/model_phases.py",
+    "action": "add",
+    "sha256": "70ed44266f0b122a885f20343964597490de800991f1111e1cc5cdc7dbce2d9f",
+    "original_sha256": null
+  },
+  {
+    "path": "src/evidence_system/relations/builder.py",
+    "action": "replace",
+    "sha256": "ce0830b773460f6e722fd5f4f875fd141e43a8203421b43cfe594578adb03f53",
+    "original_sha256": "8ecacfb8249250ffecfaea08703c1afe480a9ef5c5d7b2371d8fb19583181387"
+  },
+  {
+    "path": "src/evidence_system/source_audit.py",
+    "action": "replace",
+    "sha256": "29b8fc50dd063d3f1b7b316c73621d90341d79933afd018902f01a137d342243",
+    "original_sha256": "34f891a303f43d153b012d3d87564d8414935df992984bbc24db342763aee1c4"
+  },
+  {
+    "path": "src/evidence_system/source_config.py",
+    "action": "replace",
+    "sha256": "5b6dded3d3e8b663d40815335f38cc52a07cf1b71ffef6c963d595ec747fd694",
+    "original_sha256": "cda52ed66facfacce6129d0414fd2b6c293503bb4954a8450246e3c95c2a8ce4"
+  },
+  {
+    "path": "src/evidence_system/storage/store.py",
+    "action": "replace",
+    "sha256": "2346308d22aaaeea0f697d63afc41c2eaeaa5b171ebe4db2ea9602f271ea381e",
+    "original_sha256": "db544b2365080cc8a98d8f69b4a27c8dd3938abc431af970e3abf2e4c3961bc3"
+  },
+  {
+    "path": "tests/test_model_phase_build.py",
+    "action": "add",
+    "sha256": "47a60de9a0b0eb0725547a6a6e4ffebf1c4a3b7e5718d16c66b40a4a86b995f0",
+    "original_sha256": null
+  },
+  {
+    "path": "tests/test_phase_input.py",
+    "action": "add",
+    "sha256": "200fe64db8534a882cdc120c274e91bf5fee4adef040594cba873a96f165cf9d",
+    "original_sha256": null
+  },
+  {
+    "path": "tests/test_phase_windows.py",
+    "action": "add",
+    "sha256": "bebf66d72f9d97a2d402f8340a697f257af526fa189e560667b03171989cdf4c",
+    "original_sha256": null
+  }
+]
